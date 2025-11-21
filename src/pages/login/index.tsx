@@ -2,8 +2,8 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const login: React.FC = () => {
+const Login: React.FC = () => {
   return <div>Login</div>;
 }
 
-export default login;
+export default Login;

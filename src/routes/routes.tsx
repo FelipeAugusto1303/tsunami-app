@@ -1,6 +1,7 @@
 import { createBrowserRouter, type RouteObject } from "react-router";
 import App from "../App";
 import Register from "../pages/register";
+import Login from "../pages/login";
 
 
 export const UserRole = {
@@ -18,7 +19,7 @@ export type AppRouteObject = RouteObject & {
 const routes: AppRouteObject[] = [
     {
         path: '/',
-        element: <App/>,
+        element: <Login/>,
         usersPermitted: [UserRole.ADM, UserRole.PLAYER],
         active: true,
         label: "Informacoes gerais"
