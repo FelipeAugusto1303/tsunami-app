@@ -3,6 +3,7 @@ import {
   serverTimestamp,
   setDoc,
   doc,
+  getDoc,
 } from "firebase/firestore";
 import { app } from "../config/firebase-config";
 
@@ -68,4 +69,15 @@ export async function createPlayer(
     console.error("Erro ao criar documento player:", error);
     throw error;
   }
+}
+
+export async function getPlayerByUid(uid: string) {
+  const ref = doc(db, "playerBase", uid);
+  const snapshot = await getDoc(ref);
+
+  if (!snapshot.exists()) {
+    throw new Error("Usuário não encontrado no Firestore.");
+  }
+
+  return snapshot.data();
 }

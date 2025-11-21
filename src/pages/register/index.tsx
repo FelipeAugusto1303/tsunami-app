@@ -200,7 +200,7 @@ const Register: React.FC = () => {
         {/* Current Elo */}
         <div className="flex flex-col items-start gap-2 w-full">
           <label
-            htmlFor="full_name"
+            htmlFor="current_elo"
             className="block text-sm font-medium text-gray-300 mb-1"
           >
             Elo Atual

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { signIn } from "../../api/auth";
+import { getPlayerByUid } from "../../api/database";
 
 // import { Container } from './styles';
 
@@ -17,11 +19,7 @@ const Login: React.FC = () => {
   const [form, setForm] = useState<FormState>(initialState);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
-
-  const goToRegister = () => {
-
-  }
+  const navigate = useNavigate();
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -32,7 +30,36 @@ const Login: React.FC = () => {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    try {
+      // 1) Login com Firebase Auth
+      const userCredential = await signIn(form.email, form.password);
+      const uid = userCredential.user.uid;
+
+      console.log("Logado com UID:", uid);
+
+      // 2) Buscar informações do Firestore
+      const playerData = await getPlayerByUid(uid);
+      console.log("Player data:", playerData);
+
+      // 3) Salvar no localStorage
+      localStorage.setItem("player", JSON.stringify(playerData));
+
+      // 4) Redirecionar se quiser
+      navigate("/dashboard");
+    } catch (err: any) {
+      console.error("Erro ao logar:", err);
+
+      if (err.code === "auth/invalid-credential") {
+        alert("Email ou senha incorretos.");
+      } else if (err.code === "auth/user-not-found") {
+        alert("Usuário não encontrado.");
+      } else {
+        alert("Erro ao realizar login.");
+      }
+    }
   }
+
   return (
     <div className="flex flex-col gap-10 items-center justify-center w-full bg-gray-900 p-8">
       <div>
@@ -42,12 +69,6 @@ const Login: React.FC = () => {
             className=" w-[350px] h-[350px] rounded-full"
           />
         </div>
-        <h1 className="text-3xl text-white font-semibold mb-4">
-          Formulario de cadastro de Jogador
-        </h1>
-        <p className="text-sm text-gray-300 mb-10">
-          Preencha os dados do jogador.
-        </p>
       </div>
       <form
         onSubmit={handleSubmit}
@@ -68,7 +89,7 @@ const Login: React.FC = () => {
             onChange={handleChange}
             required
             className="block w-full rounded-md min-h-10 w-full text-white border border-gray-200 px-5 py-3 text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Ex: Felipe da Silva"
+            placeholder="email@example.com"
           />
         </div>
 
@@ -84,7 +105,7 @@ const Login: React.FC = () => {
             id="password"
             name="password"
             type="password"
-            value={form.email}
+            value={form.password}
             onChange={handleChange}
             required
             className="block min-h-10 w-full text-white rounded-md border border-gray-200 px-3 py-2 text-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
