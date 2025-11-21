@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { signUp } from "../../api/auth";
 import { createPlayer, ELO, PlayerStatus, Role } from "../../api/database";
+import { useNavigate } from "react-router";
 
 type FormState = {
   full_name: string;
@@ -56,6 +57,8 @@ const ELO_OPTIONS = [
 const Register: React.FC = () => {
   const [form, setForm] = useState<FormState>(initialState);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -117,7 +120,7 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-10 items-center w-full h-screen bg-gray-900 p-8">
+    <div className="flex flex-col gap-10 items-center w-full bg-gray-900 p-8">
       <div>
         <div className="flex items-center justify-center">
           <img
@@ -315,6 +318,15 @@ const Register: React.FC = () => {
             className="w-full min-h-10 inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Salvar Jogador
+          </button>
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="w-100 mt-10 min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm hover:text-blue-400/40 focus:outline-none focus:ring-2 focus:ring-gray-100"
+          >
+            Voltar
           </button>
         </div>
       </form>
