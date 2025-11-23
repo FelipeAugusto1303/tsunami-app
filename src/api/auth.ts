@@ -15,5 +15,6 @@ export async function signIn(email: string, password: string): Promise<UserCrede
 }
 
 export async function signOut(): Promise<void> {
+  localStorage.removeItem("player");
   return firebaseSignOut(auth);
 }
