@@ -44,23 +44,23 @@ export function validateForm(form: FormState, options?: {
   }
 
   // PUUID length check (puuid geralmente é uma string longa)
-  if (form.puuid && form.puuid.length < 16) {
+  if (form.puuid) {
     errors.puuid = "PUUID parece inválido";
   }
 
-  // Password rules (opcional)
-  if (form.password && form.password.length > 0) {
-    if (form.password.length < 6) {
-      errors.password = "Senha muito curta (mín 6 caracteres)";
-    }
-  }
+//   // Password rules (opcional)
+//   if (!form.password && form.password.length === 0) {
+//     if (form.password.length < 6) {
+//       errors.password = "Senha muito curta (mín 6 caracteres)";
+//     }
+//   }
 
-  // confirm password
-  if (options?.requirePasswordMatch ?? true) {
-    if (form.password !== form.confirmPassword) {
-      errors.confirmPassword = "As senhas não coincidem";
-    }
-  }
+//   // confirm password
+//   if (options?.requirePasswordMatch ?? true) {
+//     if (form.password !== form.confirmPassword) {
+//       errors.confirmPassword = "As senhas não coincidem";
+//     }
+//   }
 
   const valid = Object.keys(errors).length === 0;
   return { valid, errors };

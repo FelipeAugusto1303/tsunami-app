@@ -52,10 +52,10 @@ const Register: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const { valid, errors } = useFormValidation(form, {
-    required: ["full_name","email","riotId","puuid","role_primary","status","system_role"],
-    requirePasswordMatch: true
-  });
+  // const { valid, errors } = useFormValidation(form, {
+  //   required: ["full_name","email","riotId","puuid","role_primary","status","system_role"],
+  //   requirePasswordMatch: true
+  // });
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -66,7 +66,7 @@ const Register: React.FC = () => {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("Player saved:", form);
+    // console.log("Player saved:", form);
 
     if (form.password.length < 6) {
       alert("A senha deve ter pelo menos 6 caracteres");
@@ -131,10 +131,6 @@ const Register: React.FC = () => {
         tagLine: result.tagLine,
       }));
     }
-  }
-
-  function verifyForm(): boolean {
-    return !!(form.riotId.length && form.puuid.length && form.gameName);
   }
 
   return (
@@ -326,10 +322,10 @@ const Register: React.FC = () => {
 
         <div className="pt-2">
         <button
-          disabled={!valid}
+          // disabled={!valid}
           type="submit"
           className={`w-full min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2
-            ${valid ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500" : "bg-gray-500 cursor-not-allowed opacity-60"}`}
+            ${true ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500" : "bg-gray-500 cursor-not-allowed opacity-60"}`}
         >
           Salvar Jogador
         </button>
