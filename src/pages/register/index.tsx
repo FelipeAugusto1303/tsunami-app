@@ -120,7 +120,7 @@ const Register: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-10 items-center w-full bg-gray-900 p-8">
+    <div className="flex flex-col gap-10 items-center w-full h-screen bg-gray-900 p-8">
       <div>
         <div className="flex items-center justify-center">
           <img
@@ -131,13 +131,13 @@ const Register: React.FC = () => {
         <h1 className="text-3xl text-white font-semibold mb-4">
           Formulario de cadastro de Jogador
         </h1>
-        <p className="text-sm text-gray-300 mb-10">
+        <p className="text-sm text-gray-300 mb-4">
           Preencha os dados do jogador.
         </p>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 space-y-12 w-4/5 mx-auto"
+        className="flex flex-col gap-3 w-4/5 mx-auto"
       >
         {/* Nome */}
         <div className="flex flex-col items-start gap-2 w-full">
@@ -324,7 +324,7 @@ const Register: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="w-100 mt-10 min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm hover:text-blue-400/40 focus:outline-none focus:ring-2 focus:ring-gray-100"
+            className="w-100 mt-1 min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm hover:text-blue-400/40 focus:outline-none focus:ring-2 focus:ring-gray-100"
           >
             Voltar
           </button>

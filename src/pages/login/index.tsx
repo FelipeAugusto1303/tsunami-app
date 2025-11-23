@@ -46,7 +46,7 @@ const Login: React.FC = () => {
       localStorage.setItem("player", JSON.stringify(playerData));
 
       // 4) Redirecionar se quiser
-      navigate("/dashboard");
+      navigate("/player/");
     } catch (err: any) {
       console.error("Erro ao logar:", err);
 
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-full bg-gray-900 p-8">
+    <div className="flex flex-col gap-2 items-center justify-center w-full h-screen bg-gray-900 p-8">
       <div>
         <div className="flex items-center justify-center">
           <img
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 space-y-12 w-150 mx-auto"
+        className="flex flex-col space-y-2 w-150 mx-auto"
       >
         {/* Email */}
         <div className="flex flex-col items-start gap-2 w-full">
@@ -124,7 +124,7 @@ const Login: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate("/register")}
-            className="w-100 mt-10 min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm hover:text-blue-400/40 focus:outline-none focus:ring-2 focus:ring-gray-100"
+            className="w-100 mt-1 min-h-10 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm hover:text-blue-400/40 focus:outline-none focus:ring-2 focus:ring-gray-100"
           >
             Cadastrar
           </button>
