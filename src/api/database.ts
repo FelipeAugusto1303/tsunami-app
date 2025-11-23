@@ -41,10 +41,12 @@ export type SystemRole = (typeof Role)[keyof typeof Role];
 
 export type PlayerProps = {
   uid: string;
-  current_elo: string;
   email: string;
   full_name: string;
-  nickname: string;
+  riotId: string;
+  puuid: string;
+  gameName: string;
+  tagLine: string;
   role_primary: string;
   role_secondary: string;
   status: PStatus;
