@@ -1,9 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import MenuLink from "../../components/menu-link";
 import logo from "../../../public/logo.jpeg";
+import { signOut } from "../../api/auth";
 
 const Menu: React.FC = () => {
+  const navigate = useNavigate();
+  async function handleLogOut() {
+    await signOut();
+    navigate("/");
+  }
   return (
     <div className="flex min-h-screen w-full m-0 p-0 bg-gray-900">
       <nav className="w-48 min-h-screen bg-blue-900 p-2 flex flex-col items-start ">
@@ -41,7 +47,7 @@ const Menu: React.FC = () => {
         <div className="flex flex-1 items-end justify-center w-full">
           <button
             className="text-white font-bold bg-red-800 w-[100px] h-[50px] rounded"
-            onClick={() => console.log("aqui")}
+            onClick={handleLogOut}
           >
             Sair
           </button>
