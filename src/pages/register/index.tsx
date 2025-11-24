@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { signUp } from "../../api/auth";
-import { createPlayer, ELO, PlayerStatus, Role } from "../../api/database";
+import { createPlayer, PlayerStatus, Role } from "../../api/database";
 import { useNavigate } from "react-router";
 import { getPUUIDSummonerByName } from "../../api/riotApi";
-import { useFormValidation } from "../../hooks/useFormValidation";
 
 export type FormState = {
   full_name: string;
@@ -49,6 +48,7 @@ const ROLE_OPTIONS = [
 const Register: React.FC = () => {
   const [form, setForm] = useState<FormState>(initialState);
   const [loading, setLoading] = useState(false);
+  console.log(loading)
 
   const navigate = useNavigate();
 
@@ -230,7 +230,7 @@ const Register: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-row gap-2">
           {/* Role primary */}
           <div className="flex flex-col items-start gap-2 w-full">
             <label
@@ -330,7 +330,7 @@ const Register: React.FC = () => {
           Salvar Jogador
         </button>
       </div>
-        <div>
+        <div className="w-full flex items-center justify-center">
           <button
             type="button"
             onClick={() => navigate(-1)}

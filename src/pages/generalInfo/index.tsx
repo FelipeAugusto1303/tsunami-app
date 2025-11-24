@@ -55,18 +55,25 @@ const GeneralInfo: React.FC = () => {
     fetchVersion();
     getSummonerInfomations();
   }, []);
-  if (player === null && summonerImageId === null)
+  if (player === null && rankInfo === null && summonerImageId === null)
     return <div className="text-white">Sem dados</div>;
   else
     return (
-      player && (
+      player &&
+      rankInfo &&
+      summonerImageId && (
         <>
           <div className="flex flex-row items-center gap-10">
-            <img
-              src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summonerImageId}.png`}
-              alt=""
-              className="w-30 h-30 rounded-full"
-            />
+            <div className="flex flex-col items-center">
+              <img
+                src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${summonerImageId}.png`}
+                alt=""
+                className="w-30 h-30 rounded-full"
+              />
+              <span className="bg-gray-700 rounded font-bold text-white py-1 px-2 mt-[-10px]">
+                Lv {summonerLevel}
+              </span>
+            </div>
             <div className="flex flex-col items-start">
               <div className="text-white text-[30px] font-bold">
                 {player.gameName} #{player.tagLine}
