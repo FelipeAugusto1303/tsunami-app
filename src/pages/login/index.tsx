@@ -17,7 +17,7 @@ const initialState: FormState = {
 
 const Login: React.FC = () => {
   const [form, setForm] = useState<FormState>(initialState);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -65,14 +65,14 @@ const Login: React.FC = () => {
       <div>
         <div className="flex items-center justify-center">
           <img
-            src="./logo.jpeg"
+            src="/logo.jpeg"
             className=" w-[350px] h-[350px] rounded-full"
           />
         </div>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col space-y-2 w-150 mx-auto"
+        className="flex flex-col items-center space-y-2 w-150 mx-auto"
       >
         {/* Email */}
         <div className="flex flex-col items-start gap-2 w-full">
@@ -115,7 +115,7 @@ const Login: React.FC = () => {
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full min-h-10 inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-150 min-h-10 inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Entrar
           </button>
